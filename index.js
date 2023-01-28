@@ -6,6 +6,10 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 let teamName = "";
+let teamRoster = [];
+let engRoster = [];
+let internRoster = [];
+
 
 
 /*
@@ -13,10 +17,30 @@ dummy data
 */
 
 function enterManagerData(){
-
+  inquirer
+  .prompt([
+    {
+      type: "input",
+      message: "What is your name?",
+      name: "manager",
+    },
+    {
+      type: "input",
+      message: "What is your ID number?",
+      name: "idnum",
+    }
+  ])
+  
+  
+  
+  
+  
+  addEmployee()
 }
 
+function addEmployee(){
 
+}
 
 function whichRole(){
 
@@ -44,7 +68,7 @@ function start(){
     console.log(answers.team);
     console.log(teamName);
   })
-
+  enterManagerData();
   
 };
 
