@@ -31,7 +31,7 @@ function start(){
     {
       type: "input",
       message: "Welcome to your Team Profile Builder! What's the name of your team?",
-      name: "teamName", 
+      name: "team", 
       // validate: (response) => {
       //   if (response === ''){
       //     return 'You still need to provide a name for your team.'
@@ -39,9 +39,12 @@ function start(){
       //   return true
       // }     
     },    
-  ])
+  ]).then(answers => {
+    teamName = answers.team;
+    console.log(answers.team);
+    console.log(teamName);
+  })
 
-  console.log(response.name);
   
 };
 
