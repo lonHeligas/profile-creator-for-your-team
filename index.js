@@ -9,6 +9,7 @@ let teamName = "";
 let teamRoster = [];
 let engRoster = [];
 let internRoster = [];
+let currentEmployee
 
 
 
@@ -20,16 +21,29 @@ function enterManagerData(){
   inquirer
   .prompt([
     {
-      type: "input",
-      message: "What is your name?",
-      name: "manager",
+      type: 'input',
+      message: 'What\'s your name?',
+      name: 'manager',
     },
     {
-      type: "input",
-      message: "What is your ID number?",
-      name: "idnum",
+      type: 'input',
+      message: 'What\'s your ID number?',
+      name: 'idnum',
+    },
+    {
+      type: 'input',
+      message: 'What\'s your email address?',
+      name: 'email',
     }
-  ])
+  ]).then(answers => {
+    // console.log(answers.manager);
+    // console.log(answers.idnum);
+    // console.log(answers.email);
+    
+
+    
+  })
+  
   
   
   
@@ -39,11 +53,9 @@ function enterManagerData(){
 }
 
 function addEmployee(){
-
 }
 
 function whichRole(){
-
 }
 
 
@@ -53,9 +65,9 @@ function start(){
   inquirer
   .prompt([
     {
-      type: "input",
-      message: "Welcome to your Team Profile Builder! What's the name of your team?",
-      name: "team", 
+      type: 'input',
+      message: 'Welcome to your Team Profile Builder! What\'s the name of your team?',
+      name: 'team', 
       // validate: (response) => {
       //   if (response === ''){
       //     return 'You still need to provide a name for your team.'
@@ -65,10 +77,10 @@ function start(){
     },    
   ]).then(answers => {
     teamName = answers.team;
-    console.log(answers.team);
-    console.log(teamName);
+    // console.log(answers.team);
+    // console.log(teamName);
+    enterManagerData();
   })
-  enterManagerData();
   
 };
 
