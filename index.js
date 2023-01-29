@@ -10,8 +10,13 @@ const Intern = require('./lib/Intern');
 // arrays and other variables
 let teamName = "";
 let teamRoster = [];
+let additionalHTML = ""
+let teamHTML = "";
+
+// ? do I need these two below?
 let engRoster = [];
 let internRoster = [];
+
 let isFirstRun = true;
 
 // let currentEmployee = [];
@@ -108,20 +113,19 @@ function whichRole(){
   ]).then(answerObj => {
     console.log(answerObj);
     if (answerObj.choice == 'engineer') { // Y U NO DOUBLE EQUALS
-      console.log('You want to enter an Engineer')
+      // * console.log('You want to enter an Engineer')
       addEngineerData();
     } else if (answerObj.choice == 'intern') { // Y U NO DOUBLE EQUALS
-      console.log('You want to enter an Intern')
+      // * console.log('You want to enter an Intern')
       addInternData();
     }
   })
 }
 
-// adds the employee data, then branches to enginer or intern
-// function addEmployeeData(){
-// }
-
-function addEngineerData(){
+// adds an Engineer to the array
+  
+  function addEngineerData(){
+  // * console.log('you are at addEngineerData');
   inquirer
   .prompt([...basicQuestions(),  
     {
@@ -138,31 +142,14 @@ function addEngineerData(){
   ]).then(answersObj => {
     const { name, id, email, github } = answersObj;
     teamRoster.push( new Engineer( name, id, email, github));
-    console.log(teamRoster);
+    // * console.log(teamRoster);
     addAnotherEmployee();
   })
 }
 
-
-function addAnotherEmployee(){
-  inquirer
-  .prompt(
-    {
-      type: 'confirm',
-      message: 'Would you like to enter another employee?',
-      name: 'continue',
-    }
-  ).then(answerObj => {
-    if (answerObj.continue) {
-      whichRole();
-    } else {
-      renderHTMLPage();
-    }
-  })
-}
-
+// adds an intern to the data
 function addInternData(){
-  console.log('you are at addInternData');
+  // * console.log('you are at addInternData');
   inquirer
   .prompt([...basicQuestions(),  
     {
@@ -179,14 +166,32 @@ function addInternData(){
   ]).then(answersObj => {
     const { name, id, email, school } = answersObj;
     teamRoster.push( new Intern( name, id, email, school));
-    console.log(teamRoster);
+    // * console.log(teamRoster);
     addAnotherEmployee();
   })
 }
 
+// asks if the user wants to add another employee
 
-function renderHTMLPage(){
+function addAnotherEmployee(){
+  inquirer
+  .prompt(
+    {
+      type: 'confirm',
+      message: 'Would you like to enter another employee?',
+      name: 'continue',
+    }
+  ).then(answerObj => {
+    if (answerObj.continue) {
+      whichRole();
+    } else {
+      renderHTMLPage(teamRoster);
+    }
+  })
 }
+
+
+
 
 
 function start(){
@@ -210,5 +215,87 @@ function start(){
     enterManagerData();
   })  
 };
+
+
+
+function renderHTMLPage(data){
+  console.log(data);
+  // * console.log(teamRoster);
+  teamHTML = `<h1>${teamName}</h1>
+  <div class="card">
+  <div class="container">
+    <h2>${data[0].getName()}</h2>
+    <h2>Manager</h2>
+    </div>
+  <div class="container">
+    <h3>ID: ${data[0].getID()}</h3>
+    <h3>${data[0].getEmail()}</h3>
+    <h3>${data[0].getOfficeNumber()}</h3>
+  </div>
+</div>
+  `
+  // * console.log(teamHTML);
+  // removes the manager from the data array to build out the remainder of the array in html
+  const dataCropped = data.slice(1);
+  // * console.log(dataCropped)
+
+  dataCropped.forEach(element => {
+    if (dataCropped.role === 'engineer') {
+      additionalHTML = `<div class="card">
+<div class="container">
+  <h2>${dataCropped.getName()}</h2>
+  <h2>Engineer</h2>
+  </div>
+<div class="container">
+  <h3>ID: ${dataCropped.getID()}</h3>
+  <h3>${dataCropped.getEmail()}</h3>
+  <h3>${dataCropped.getGithub()}</h3>
+</div>
+</div>`
+    // adds the sring to the html
+    teamHTML = teamHTML + additionalHTML;
+    // clears out the string for further processing
+    additionalHTML = ""
+    console.log(teamHTML);
+    console.log(t`additionalHTML = ${additionalHTML}`);
+
+    } else {
+
+    }
+
+  })
+  
+
+  // return `
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  // functionWriteToFile()
+}
+
+function functionWriteToFile(){
+
+}
+
+
 
 start();
