@@ -12,6 +12,7 @@ let teamName = "";
 let teamRoster = [];
 let engRoster = [];
 let internRoster = [];
+let isFirstRun = true;
 
 // let currentEmployee = [];
 
@@ -21,10 +22,10 @@ let internRoster = [];
 dummy data
 */
 
-const basicQuestions = [
+basicQuestions = () => [
   {
     type: 'input',
-    message: 'What\'s your name?',
+    message: `What\'s ${isFirstRun?'your':'the employee\'s'} name?`,
     name: 'name',
     validate: (response) => {
       if (response === ''){
@@ -35,7 +36,7 @@ const basicQuestions = [
   },
   {
     type: 'input',
-    message: 'What\'s your ID number?',
+    message: `What\'s ${isFirstRun?'your':'the employee\'s'} ID number?`,
     name: 'id',
     validate: (response) => {
       if (response === ''){
@@ -46,7 +47,7 @@ const basicQuestions = [
   },
   {
     type: 'input',
-    message: 'What\'s your email address?',
+    message: `What\'s ${isFirstRun?'your':'the employee\'s'} email address?`,
     name: 'email',
     validate: (response) => {
       if (response === ''){
@@ -54,7 +55,7 @@ const basicQuestions = [
       }
       return true
     }    
-  }
+  }  
 ]
 
 
@@ -62,7 +63,7 @@ const basicQuestions = [
 // enters the manager's data.
 function enterManagerData(){
   inquirer
-  .prompt( [...basicQuestions,
+  .prompt( [...basicQuestions(),
     {
       type: 'input',
       message: 'What\'s your office number?',
@@ -83,19 +84,16 @@ function enterManagerData(){
     // * console.log(answersObj.name);
     // * console.log(answersObj.id);
     // * console.log(answersObj.email);
+
+    // * sets the var to false so it asks a different name question for the engineer/intern employees
+    isFirstRun = false;
     whichRole();
   });  
 }
 
-// asks if you want to enter an employee's data (this is skipped the first time)
-function addEmployee(){
-
-}
-
 
 // asks which role you want to enter
-function whichRole(){
-  
+function whichRole(){  
   inquirer
   .prompt([
     {
@@ -103,15 +101,16 @@ function whichRole(){
       message: 'Would you like to add an Engineer or an Intern to your roster?',
       name: 'choice',
       choices: [
-        {name: 'engineer', value: "Engineer"},
-        {name: 'intern', value: 'Intern'},
+        {name: 'Engineer', value: 'engineer'},
+        {name: 'Intern', value: 'intern'},
     ],
   }
   ]).then(answerObj => {
-    if (answerObj.choice = 'engineer') { // Y U NO DOUBLE EQUALS
+    console.log(answerObj);
+    if (answerObj.choice == 'engineer') { // Y U NO DOUBLE EQUALS
       console.log('You want to enter an Engineer')
       addEngineerData();
-    } else if (answerObj.choice = 'intern') { // Y U NO DOUBLE EQUALS
+    } else if (answerObj.choice == 'intern') { // Y U NO DOUBLE EQUALS
       console.log('You want to enter an Intern')
       addInternData();
     }
@@ -124,7 +123,7 @@ function whichRole(){
 
 function addEngineerData(){
   inquirer
-  .prompt([...basicQuestions,  
+  .prompt([...basicQuestions(),  
     {
       type: 'input',
       message: 'What\'s your new engineer\'s gitHub username?',
@@ -140,11 +139,49 @@ function addEngineerData(){
     const { name, id, email, github } = answersObj;
     teamRoster.push( new Engineer( name, id, email, github));
     console.log(teamRoster);
+    addAnotherEmployee();
   })
 }
 
-function addInternData(){  
 
+function addAnotherEmployee(){
+  inquirer
+  .prompt(
+    {
+      type: 'confirm',
+      message: 'Would you like to enter another employee?',
+      name: 'continue',
+    }
+  ).then(answerObj => {
+    if (answerObj.continue) {
+      whichRole();
+    } else {
+      renderHTMLPage();
+    }
+  })
+}
+
+function addInternData(){
+  console.log('you are at addInternData');
+  inquirer
+  .prompt([...basicQuestions(),  
+    {
+      type: 'input',
+      message: 'What\'s your new intern\'s attended school?',
+      name: 'school',
+      validate: (response) => {
+        if (response === ''){
+          return 'You still need to provide your intern\'s attended school, please.'          
+          }
+          return true
+        }  
+    }
+  ]).then(answersObj => {
+    const { name, id, email, school } = answersObj;
+    teamRoster.push( new Intern( name, id, email, school));
+    console.log(teamRoster);
+    addAnotherEmployee();
+  })
 }
 
 
@@ -173,8 +210,5 @@ function start(){
     enterManagerData();
   })  
 };
-
-
-
 
 start();

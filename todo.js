@@ -4,20 +4,20 @@
 // *            set manager status
 
 // *         branch to engineer employee or intern employee
-// todo      Add first employee
-// todo      branch to engineer employee or intern employee
+// *         Add first employee
+// *         branch to engineer employee or intern employee
 
-// todo      branch to engineer
-// todo        ask questions
-// todo        add to engineer array
-// todo        ask if the user wants to add another employee 
-// todo        return if yes
+// *         branch to engineer
+// *           ask questions
+// *           add to engineer array
+// *           ask if the user wants to add another employee 
+// *           return if yes
 
-// todo      branch to intern
-// todo        ask questions
-// todo        add to intern array
-// todo        ask if the user wants to add anoter employee 
-// todo        return if yes
+// *         branch to intern
+// *           ask questions
+// *           add to intern array
+// *           ask if the user wants to add anoter employee 
+// *           return if yes
 
 // todo      if no, ask for filename
 // todo      build out html in this order:
