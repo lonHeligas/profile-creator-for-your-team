@@ -1,7 +1,7 @@
 // todo Start
-// todo Start the questions
-// todo      ask information for the manger
-// todo         set manager status
+// *    Start the questions
+// *         ask information for the manger
+// *            set manager status???
 // todo      branch to engineer employee or intern employee
 
 // todo      branch to engineer
