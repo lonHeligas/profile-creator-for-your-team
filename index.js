@@ -55,14 +55,38 @@ function enterManagerData(){
         }
         return true
       }    
-    }
+    },
+    {
+      type: 'imput',
+      message: 'What\'s your office number?',
+      name: 'office',
+      validate: (response) => {
+        if (response === ''){
+          return 'You still need to provide your office number, please.'
+          
+          }
+          return true
+        }        
+    },  
   ]).then(answersObj => {
-    const { name, id, email, } = answersObj;
+    const { name, id, email, office } = answersObj;
+    teamRoster.push( new Manager( name, id, email, office)); 
+
+    whichRole();
+
+
     
-    console.log(answersObj)
-    // * console.log(answers.name);
-    // * console.log(answers.id);
-    // * console.log(answers.email);
+    
+    
+    
+    
+    
+    
+    // * console.log(teamRoster)
+    // * console.log(answersObj)
+    // * console.log(answersObj.name);
+    // * console.log(answersObj.id);
+    // * console.log(answersObj.email);
 
 
     
@@ -72,11 +96,29 @@ function enterManagerData(){
 
 // asks if you want to enter an employee's data (this is skipped the first time)
 function addEmployee(){
+
 }
 
 
 // asks which role you want to enter
 function whichRole(){
+  inquirer
+  .prompt([
+    {
+      type: 'list',
+      message: 'Would you like to add an Engineer or an Intern to your roster?',
+      choices: [
+        {name: 'engineer', value: "Engineer"},
+        {name: 'intern', value: 'Intern'},
+    ],
+    }    
+  ]).then(answerObj => {
+    if (answerObj = 'engineer') {
+      addEngineerData();
+    } else if (answerObj = 'intern') {
+      addInternData();
+    }
+  })
 }
 
 // adds the employee data, then branches to enginer or intern
@@ -112,8 +154,8 @@ function start(){
     },    
   ]).then(answersObj => {
     teamName = answersObj.team;
-    // console.log(answers.team);
-    // console.log(teamName);
+    // * console.log(answers.team);
+    // * console.log(teamName);
     enterManagerData();
   })
   
