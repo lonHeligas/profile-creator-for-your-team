@@ -3,6 +3,7 @@
 // *         ask information for the manger
 // *            set manager status
 
+// *         branch to engineer employee or intern employee
 // todo      Add first employee
 // todo      branch to engineer employee or intern employee
 
