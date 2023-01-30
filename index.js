@@ -225,77 +225,92 @@ function renderHTMLPage(data){
   <div class="card">
   <div class="container">
     <h2>${data[0].getName()}</h2>
-    <h2>Manager</h2>
+    <h2>👓 Manager</h2>
     </div>
   <div class="container">
     <h3>ID: ${data[0].getID()}</h3>
-    <h3>${data[0].getEmail()}</h3>
-    <h3>${data[0].getOfficeNumber()}</h3>
+    <h3>Email: ${data[0].getEmail()}</h3>
+    <h3>Office number: ${data[0].getOfficeNumber()}</h3>
   </div>
-</div>
-  `
+</div>`
+
   // * console.log(teamHTML);
   // removes the manager from the data array to build out the remainder of the array in html
-  const dataCropped = data.slice(1);
+  const dataCropped = data.slice(1);  
   // * console.log(dataCropped)
 
   dataCropped.forEach(element => {
-    if (dataCropped.role === 'engineer') {
+    if (element.role === 'engineer') {
       additionalHTML = `<div class="card">
 <div class="container">
-  <h2>${dataCropped.getName()}</h2>
-  <h2>Engineer</h2>
+  <h2>${element.getName()}</h2>
+  <h2>⚙ Engineer</h2>
   </div>
 <div class="container">
-  <h3>ID: ${dataCropped.getID()}</h3>
-  <h3>${dataCropped.getEmail()}</h3>
-  <h3>${dataCropped.getGithub()}</h3>
+  <h3>ID: ${element.getID()}</h3>
+  <h3>Email: ${element.getEmail()}</h3>
+  <h3>GitHub: ${element.getGithub()}</h3>
 </div>
-</div>`
+</div>
+`
     // adds the sring to the html
-    teamHTML = teamHTML + additionalHTML;
-    // clears out the string for further processing
-    additionalHTML = ""
-    console.log(teamHTML);
-    console.log(t`additionalHTML = ${additionalHTML}`);
+      teamHTML = teamHTML + additionalHTML;
+      // clears out the string for further processing
+      additionalHTML = ""
+      console.log(teamHTML);
+      console.log(`additionalHTML = ${additionalHTML}`);
 
     } else {
 
+      additionalHTML = `<div class="card">
+<div class="container">
+  <h2>${element.getName()}</h2>
+  <h2>🎓 Intern</h2>
+  </div>
+<div class="container">
+  <h3>ID: ${element.getID()}</h3>
+  <h3>Email: ${element.getEmail()}</h3>
+  <h3>School: ${element.getSchool()}</h3>
+</div>
+</div>
+`
+      teamHTML = teamHTML + additionalHTML;
+      additionalHTML = ""
+      // console.log(teamHTML);
+      // console.log(`additionalHTML = ${additionalHTML}`);
     }
-
-  })
-  
-
-  // return `
-   
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-  // functionWriteToFile()
+  }) 
+  functionWriteToFile()
 }
 
 function functionWriteToFile(){
+  const frontHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team ${teamName}</title>
+  <link
+  href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+`;
+  const endHTML = `</body>
+</html>`;
 
+  fullHTML = frontHTML + teamHTML + endHTML;
+  console.log(fullHTML);
+
+
+
+  // fs.writeFile(`./dist/${teamName}.html`, fullHTML, (err) => {
+  //   err ? console.log(err) : consolelog(`Your team ${teamName} has been created in the 'dist' folder. Grab that and the CSS file.`);
+  // }, 
+  // )
 }
-
-
 
 start();
