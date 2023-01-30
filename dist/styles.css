@@ -2,6 +2,13 @@
   font-family: 'Philosopher', sans-serif;
 }
 
+
+h1 {
+  font-size: 92px;
+  color: white;  
+  margin: auto; 
+}
+
 .card {
   /* bakground-color: orange; */
   outline-color: red;
@@ -11,27 +18,55 @@
   background-color: #ededed;
   /* border: solid #BDBDBD 13px;  */
   margin: 10px;
-  width: 225px;
-  height: 300px;
+  width: 245px;
+  height: 420px;
   padding: 10px;
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8)  ; 
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);  
+}
+
+h2 {
+  color: white;
+  font-size: 24px;
+  margin-left: 5px;
+  text-shadow: 4px 4px 2px black;
   
+}
+
+h3 {
+  outline-color: lightgrey;
+  /* outline-style: solid;
+  outline-width: 1px; */
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+#name {
+  font-size: 40px;
 }
 
 .container {
-  background-color: white;
-  outline-color: black;
+  margin-top: 0px;
+  background-color: purple;
+  padding: 10px;
+  border-radius: 15px 15px 0px 0px;
+  /* outline-color: black;
   outline-style: solid;
-  outline-width: 2px;
+  outline-width: 2px; */
 }
 
-h1 {
-  font-size: 92px;
-  color: white;  
-  margin: auto;
-  
+.bottom-container {
+  border-radius: 0px 0px 15px 15px;
+  height: 47%;
+  padding-top: 40px;
+  background-color: white;    
+  border-color: white;
+  /* outline-style: solid;
+  outline-width: 1px; */
+  margin-bottom: 50%
 
 }
+
 
 .center{ 
   text-align: center;
@@ -44,12 +79,10 @@ h1 {
 
 .layout {
   width: 100%;
-
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   margin: 50px;
-
   justify-content: center;
   align-items: center;
 }
