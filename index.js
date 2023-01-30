@@ -13,14 +13,13 @@ let teamRoster = [];
 let additionalHTML = ""
 let teamHTML = "";
 
-// ? do I need these two below?
+// ? do I need these two below? 
+// ! turns out I do not.
+
 let engRoster = [];
 let internRoster = [];
 
 let isFirstRun = true;
-
-// let currentEmployee = [];
-
 
 
 /*
@@ -226,7 +225,7 @@ function renderHTMLPage(data){
   // * console.log(teamRoster);
 
   teamHTML = `<h1>${teamName}</h1>
-  <div class="card">
+<div class="card">
   <div class="container">
     <h2>${data[0].getName()}</h2>
     <h2>👓 Manager</h2>
@@ -242,22 +241,24 @@ function renderHTMLPage(data){
 
   // removes the manager from the data array to build out the remainder of the array in html
   const dataCropped = data.slice(1);  
-  
+
   // * console.log(dataCropped)
 
   dataCropped.forEach(element => {
     if (element.role === 'engineer') {
-      additionalHTML = `<div class="card">
-<div class="container">
-  <h2>${element.getName()}</h2>
-  <h2>⚙ Engineer</h2>
+      additionalHTML = `
+<div class="card">
+  <div class="container">
+    <h2>${element.getName()}</h2>
+    <h2>⚙ Engineer</h2>
   </div>
-<div class="container">
-  <h3>ID: ${element.getID()}</h3>
-  <h3>Email: ${element.getEmail()}</h3>
-  <h3>GitHub: ${element.getGithub()}</h3>
+  <div class="container">
+    <h3>ID: ${element.getID()}</h3>
+    <h3>Email: ${element.getEmail()}</h3>
+    <h3>GitHub: ${element.getGithub()}</h3>
+  </div>
 </div>
-</div>
+
 `
     // adds the sring to the html
       teamHTML = teamHTML + additionalHTML;
@@ -268,17 +269,19 @@ function renderHTMLPage(data){
 
     } else {
 
-      additionalHTML = `<div class="card">
-<div class="container">
-  <h2>${element.getName()}</h2>
-  <h2>🎓 Intern</h2>
+      additionalHTML = `
+<div class="card">
+  <div class="container">
+    <h2>${element.getName()}</h2>
+    <h2>🎓 Intern</h2>
   </div>
-<div class="container">
-  <h3>ID: ${element.getID()}</h3>
-  <h3>Email: ${element.getEmail()}</h3>
-  <h3>School: ${element.getSchool()}</h3>
+  <div class="container">
+    <h3>ID: ${element.getID()}</h3>
+    <h3>Email: ${element.getEmail()}</h3>
+    <h3>School: ${element.getSchool()}</h3>
+  </div>
 </div>
-</div>
+
 `
       teamHTML = teamHTML + additionalHTML;
       additionalHTML = ""
@@ -304,8 +307,10 @@ function functionWriteToFile(){
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+
 `;
-  const endHTML = `</body>
+  const endHTML = `
+</body>
 </html>`;
 
   // assembles the full HTML file

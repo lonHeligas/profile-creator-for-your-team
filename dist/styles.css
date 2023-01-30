@@ -1,0 +1,56 @@
+* {
+  font-family: 'Philosopher', sans-serif;
+}
+
+.card {
+  /* bakground-color: orange; */
+  outline-color: red;
+  outline-style: solid;
+  outline-width: 2px;
+  border-radius: 15px;
+  background-color: #ededed;
+  /* border: solid #BDBDBD 13px;  */
+  margin: 10px;
+  width: 225px;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8)  ; 
+  
+}
+
+.container {
+  background-color: white;
+  outline-color: black;
+  outline-style: solid;
+  outline-width: 2px;
+}
+
+h1 {
+  font-size: 92px;
+  color: white;  
+  margin: auto;
+  
+
+}
+
+.center{ 
+  text-align: center;
+}
+
+.titlebar {
+  height: 125px;
+  background-color: red;  
+}
+
+.layout {
+  width: 100%;
+
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 50px;
+
+  justify-content: center;
+  align-items: center;
+}
+
