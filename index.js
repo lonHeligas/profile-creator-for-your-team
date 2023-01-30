@@ -222,16 +222,21 @@ function renderHTMLPage(data){
   // * console.log(data);
   // * console.log(teamRoster);
 
-  teamHTML = `<h1>${teamName}</h1>
+  teamHTML = `<header class="titlebar">
+<h1>${teamName}</h1>
+</header>
+<section class="layout">
 <div class="card">
   <div class="container">
-    <h2>${data[0].getName()}</h2>
+    <h2 id="name">${data[0].getName()}</h2>
     <h2>👓 Manager</h2>
     </div>
-  <div class="container">
-    <h3>ID: ${data[0].getID()}</h3>
-    <h3>Email: ${data[0].getEmail()}</h3>
-    <h3>Office number: ${data[0].getOfficeNumber()}</h3>
+  <div class="bottom-container">
+    <div class="info-card">
+      <h3>ID: ${data[0].getID()}</h3>
+      <h2>Email: ${data[0].getEmail()}</h2>
+      <h3>Office number: ${data[0].getOfficeNumber()}</h3>
+    </div>
   </div>
 </div>`
 
@@ -247,13 +252,15 @@ function renderHTMLPage(data){
       additionalHTML = `
 <div class="card">
   <div class="container">
-    <h2>${element.getName()}</h2>
+    <h2 id="name">${element.getName()}</h2>
     <h2>⚙ Engineer</h2>
   </div>
-  <div class="container">
-    <h3>ID: ${element.getID()}</h3>
-    <h3>Email: ${element.getEmail()}</h3>
-    <h3>GitHub: ${element.getGithub()}</h3>
+  <div class="bottom-container">
+      <div class="info-card">
+        <h3>ID: ${element.getID()}</h3>
+        <h2>Email: ${element.getEmail()}</h2>
+        <h3>GitHub: ${element.getGithub()}</h3>
+      </div>
   </div>
 </div>
 
@@ -270,13 +277,15 @@ function renderHTMLPage(data){
       additionalHTML = `
 <div class="card">
   <div class="container">
-    <h2>${element.getName()}</h2>
+    <h2 id="name">${element.getName()}</h2>
     <h2>🎓 Intern</h2>
   </div>
-  <div class="container">
-    <h3>ID: ${element.getID()}</h3>
-    <h3>Email: ${element.getEmail()}</h3>
-    <h3>School: ${element.getSchool()}</h3>
+  <div class="bottom-container">
+    <div class="info-card">
+      <h3>ID: ${element.getID()}</h3>
+      <h2>Email: ${element.getEmail()}</h2>
+      <h3>School: ${element.getSchool()}</h3>
+    </div>
   </div>
 </div>
 
@@ -297,18 +306,22 @@ function functionWriteToFile(){
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Team ${teamName}</title>
+  <title>team one</title>
   <link
   href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
   rel="stylesheet"
 />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
 
 `;
   const endHTML = `
-</body>
+  </section>
+  </body>
 </html>`;
 
   // assembles the full HTML file
@@ -318,8 +331,8 @@ function functionWriteToFile(){
 
 
 
-  fs.writeFile(`./dist/${teamName}.html`, fullHTML, (err) => {
-    err ? console.log(err) : consolelog(`Your team ${teamName} has been created in the 'dist' folder. Grab that and the CSS file.`);
+  fs.writeFile(`./dist/team.html`, fullHTML, (err) => {
+    err ? console.log(err) : console.log(`Your team ${teamName} has been created in the 'dist' folder. Grab that and the CSS file.`);
   }, 
   )
 }
