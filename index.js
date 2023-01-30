@@ -210,8 +210,10 @@ function start(){
     },    
   ]).then(answersObj => {
     teamName = answersObj.team;
+
     // * console.log(answers.team);
     // * console.log(teamName);
+
     enterManagerData();
   })  
 };
@@ -219,8 +221,10 @@ function start(){
 
 
 function renderHTMLPage(data){
-  console.log(data);
+
+  // * console.log(data);
   // * console.log(teamRoster);
+
   teamHTML = `<h1>${teamName}</h1>
   <div class="card">
   <div class="container">
@@ -235,8 +239,10 @@ function renderHTMLPage(data){
 </div>`
 
   // * console.log(teamHTML);
+
   // removes the manager from the data array to build out the remainder of the array in html
   const dataCropped = data.slice(1);  
+  
   // * console.log(dataCropped)
 
   dataCropped.forEach(element => {
@@ -257,8 +263,8 @@ function renderHTMLPage(data){
       teamHTML = teamHTML + additionalHTML;
       // clears out the string for further processing
       additionalHTML = ""
-      console.log(teamHTML);
-      console.log(`additionalHTML = ${additionalHTML}`);
+      // * console.log(teamHTML);
+      // * console.log(`additionalHTML = ${additionalHTML}`);
 
     } else {
 
@@ -302,15 +308,17 @@ function functionWriteToFile(){
   const endHTML = `</body>
 </html>`;
 
+  // assembles the full HTML file
+
   fullHTML = frontHTML + teamHTML + endHTML;
   console.log(fullHTML);
 
 
 
-  // fs.writeFile(`./dist/${teamName}.html`, fullHTML, (err) => {
-  //   err ? console.log(err) : consolelog(`Your team ${teamName} has been created in the 'dist' folder. Grab that and the CSS file.`);
-  // }, 
-  // )
+  fs.writeFile(`./dist/${teamName}.html`, fullHTML, (err) => {
+    err ? console.log(err) : consolelog(`Your team ${teamName} has been created in the 'dist' folder. Grab that and the CSS file.`);
+  }, 
+  )
 }
 
 start();
