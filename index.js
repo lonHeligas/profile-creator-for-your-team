@@ -191,8 +191,6 @@ function addAnotherEmployee(){
 
 
 
-
-
 function start(){
   inquirer
   .prompt([

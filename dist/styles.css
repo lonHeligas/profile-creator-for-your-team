@@ -7,6 +7,7 @@ h1 {
   font-size: 92px;
   color: white;  
   margin: auto; 
+  text-shadow: 4px 4px 2px black;
 }
 
 .card {
@@ -15,13 +16,23 @@ h1 {
   outline-style: solid;
   outline-width: 2px;
   border-radius: 15px;
-  background-color: #ededed;
+  background-color: #eeeeee;
   /* border: solid #BDBDBD 13px;  */
   margin: 10px;
   width: 245px;
   height: 420px;
   padding: 10px;
-  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8);  
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8); 
+}
+
+.info-card {
+  background-color: #efefef;
+  margin: 12px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10px;
+
+
 }
 
 h2 {
@@ -58,7 +69,8 @@ h3 {
 .bottom-container {
   border-radius: 0px 0px 15px 15px;
   height: 47%;
-  padding-top: 40px;
+  padding-top: 21px;
+  padding-bottom: 20px;
   background-color: white;    
   border-color: white;
   /* outline-style: solid;
