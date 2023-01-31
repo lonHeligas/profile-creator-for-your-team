@@ -38,14 +38,15 @@ function menu(){
         {name: 'Intern', value: 'intern'},
         {name: "Build HTML", value: "Create Team"}
     ],
-  }
+  } 
   ]).then(answerObj => {
-    console.log(answerObj);
-    if (answerObj.choice == 'engineer') { // Y U NO DOUBLE EQUALS
-      // * console.log('You want to enter an Engineer')
+    // console.log(answerObj);
+    if (answerObj.choice == 'engineer') { 
+     
+      console.log('You have chosen to enter an Engineer')
       addEngineerData();
-    } else if (answerObj.choice == 'intern') { // Y U NO DOUBLE EQUALS
-      // * console.log('You want to enter an Intern')
+    } else if (answerObj.choice == 'intern') { 
+      console.log('You have chosen to enter an Intern')
       addInternData();
     }
     else {
